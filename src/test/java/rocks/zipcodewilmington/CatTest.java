@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import rocks.zipcodewilmington.animals.Animal;
 import rocks.zipcodewilmington.animals.Cat;
+import rocks.zipcodewilmington.animals.Mammal;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -78,14 +79,43 @@ public class CatTest {
 
   @Test
   public void eatFoodTest() {
+    // Given a new cat & a new food
     Cat cat = new Cat(null, null, null);
     Food food = new Food();
 
-
-
+    // When cat eats food, integer expected should be one from 0
     cat.eat(food);
-    
+    Integer expected = 1;
 
+    // Then number of meals will = expected number
+    Assert.assertEquals(cat.getNumberOfMealsEaten(), expected);
+  }
 
+  @Test
+  public void getId() {
+  // Given a new cat with an ID of 505,
+  Integer givenId = 505;
+  Cat cat = new Cat(null, null, givenId);
+
+  // When getID is called,
+  cat.getId();
+  Integer expected = givenId;
+
+  // Then givenId will be equal to the expected
+  Assert.assertEquals(givenId, expected);
+  }
+
+  @Test
+  public void catIsAnimalTest() {
+  // Given a new cat,
+  Cat cat = new Cat(null, null, null);
+  // Assert that the boolean returned from instanceof is true
+  Assert.assertTrue(cat instanceof Animal);
+  }
+
+  @Test
+  public void catIsMammalTest() {
+  Cat cat = new Cat(null, null, null);
+  Assert.assertTrue(cat instanceof Mammal);
   }
 }
